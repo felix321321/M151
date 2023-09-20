@@ -25,6 +25,8 @@ $hashed_password = md5($firstname . $password);
 // Execute the SQL statement
 $stmt->execute();
 
+header("Location: login.php");
+
 // Close the database connection when done
 $stmt->close();
 $mysqli->close();
