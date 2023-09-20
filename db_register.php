@@ -22,8 +22,6 @@ $password = trim($_POST["password"]);
 // Hash the password
 $hashed_password = md5($firstname . $password);
 
-echo "Hashed password: " . $hashed_password;
-
 // Execute the SQL statement
 $stmt->execute();
 
