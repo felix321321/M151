@@ -19,15 +19,7 @@
             <h2>Login</h2>
           </div>
           <div class="card-body">
-            <form action="maininterface.php" method="POST">
-            <div class="mb-3">
-                <label for="firstname" class="form-label">First name:</label>
-                <input type="text" class="form-control" id="firstname" name="firstname" required>
-              </div>
-              <div class="mb-3">
-                <label for="lastname" class="form-label">Last name:</label>
-                <input type="text" class="form-control" id="lastname" name="lastname" required>
-              </div>
+            <form action="db_login.php" method="POST">
               <div class="mb-3">
                 <label for="username" class="form-label">Username:</label>
                 <input type="text" class="form-control" id="username" name="username" required>
@@ -41,7 +33,6 @@
                 <button type="button" class="btn btn-primary btn-block">Sign up</button>
               </a>
             </form>
-            <form action="createAccount.php" method="POST">
                 
             </form>
           </div>
