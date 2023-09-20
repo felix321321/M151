@@ -19,7 +19,7 @@
             <h2>Sign Up</h2>
           </div>
           <div class="card-body">
-            <form action="register.php" method="POST">
+            <form action="db_register.php" method="POST">
             <div class="mb-3">
                 <label for="firstname" class="form-label">First name:</label>
                 <input type="text" class="form-control" id="firstname" name="firstname" required>
