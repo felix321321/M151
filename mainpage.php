@@ -1,5 +1,8 @@
 <?php
-
+session_start();
+if (!isset($_SESSION['loggedin']) or !$_SESSION['loggedin']) {
+    header("Location: login.php");
+} 
 include "db_connection.php";
 
 // Prepare a SQL statement to select data from the table
@@ -11,27 +14,7 @@ $stmt->execute();
 // Bind the result to variables
 $stmt->bind_result($title, $text, $picture);
 
-// Output the HTML code for the menu bar
-echo "<div style='display: flex; justify-content: space-between; align-items: center; padding: 10px; background-color: #f2f2f2;'>";
-echo "<div>";
-echo "<h1>All Recipes</h1>";
-echo "</div>";
-echo "<div style='display: flex;'>";
-echo "<div style='margin-right: 10px;'>";
-echo "<button onclick='location.href=\"addrecipe.php\";'>Add recipe</button>";
-echo "</div>";
-echo "<div style='margin-right: 10px;'>";
-echo "<button onclick='location.href=\"mainpage.php\";'>All recipes</button>";
-echo "</div>";
-echo "<div style='margin-right: 10px;'>";
-echo "<button onclick='location.href=\"anotherpage.php\";'>My account</button>";
-echo "</div>";
-echo "<div>";
-echo "<button onclick='location.href=\"myrecipes.php\";'>My recipes</button>";
-echo "</div>";
-echo "</div>";
-echo "</div>";
-
+include 'banner.php';
 // Loop through the results and display them in boxes
 echo "<div style='display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 20px;'>";
 while ($stmt->fetch()) {
@@ -40,7 +23,9 @@ while ($stmt->fetch()) {
     echo "<ul>";
     echo "<li>" . $text . "</li>";
     echo "</ul>";
-    echo "<img src='data:image/jpeg;base64," . base64_encode($picture) . "'>";
+    echo "<div class='recipe' style='height: 200px;'>";
+    echo "<img src='data:image/jpeg;base64," . base64_encode($picture) . "' style='max-width: 100%; height: 100%; object-fit: cover;'>";
+    echo "</div>";
     echo "</div>";
 }
 

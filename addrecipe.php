@@ -1,9 +1,12 @@
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Add Recipe</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+    <?php include 'banner.php'; ?>
     <h1>Add Recipe</h1>
     <form method="post" action="db_addrecipe.php" enctype="multipart/form-data">
         <label for="title">Title:</label>

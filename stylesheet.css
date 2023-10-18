@@ -2,3 +2,15 @@ form {
     display: inline-block;
     margin-right: 2px;
   }
+
+.recipe {
+    width: 33.33%;
+    float: left;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.recipe img {
+    width: 100%;
+    height: auto;
+}

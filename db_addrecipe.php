@@ -1,5 +1,10 @@
 <?php
 
+session_start();
+if (!isset($_SESSION['loggedin']) or !$_SESSION['loggedin']) {
+    header("Location: login.php");
+} 
+
 include "db_connection.php";
 
 $userid = "10";
@@ -12,7 +17,7 @@ $stmt = $mysqli->prepare("INSERT INTO recipes (userid, title, text, picture) VAL
 
 $stmt->bind_param("sssb", $userid, $title, $text, $picture);
 
-echo base64_encode($picture);
+$stmt->send_long_data(3, $picture);
 
 // Execute the SQL statement
 $stmt->execute();
