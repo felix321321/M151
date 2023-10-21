@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (md5($firstname . $old_password) == $password) {
         // Hash the new password
 
-        $password = md5($firstname . $new_password);
+        $hashed_password = md5($firstname . $new_password);
 
         // Prepare a SQL statement to update the user's password in the table
         $stmt = $mysqli->prepare("UPDATE userdata SET password = ? WHERE id = ?");
@@ -59,7 +59,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         header("Location: mainpage.php");
     } else {
         // Display an error message
-        header("Location: myaccount.php");
         $error_message = "Incorrect old password.";
         
     }
