@@ -7,6 +7,7 @@ if (!isset($_SESSION['loggedin']) or !$_SESSION['loggedin']) {
 
 include "db_connection.php";
 
+echo "hello";
 function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
@@ -18,6 +19,15 @@ function test_input($data) {
 $id = test_input($_POST['id']);
 
 $userid = $_SESSION['user_id'];
+$recipeUserId = 0;
+
+// Prepare a SQL statement to select the recipe from the table
+$stmt = $mysqli->prepare("SELECT userid FROM recipes WHERE id = ?");
+$stmt->bind_param("i", $id);
+$stmt->execute();
+$stmt->bind_result($recipeUserId);
+$stmt->fetch();
+$stmt->close();
 
 if ($userid != $recipeUserId) {
     header("Location: mainpage.php");

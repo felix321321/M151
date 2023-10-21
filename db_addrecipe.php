@@ -14,7 +14,7 @@ function test_input($data) {
 
 include "db_connection.php";
 
-$userid = "10";
+$userid = $_SESSION['user_id'];
 $title = test_input($_POST["title"]);
 $text = test_input($_POST["text"]);
 $picture = file_get_contents($_FILES["picture"]["tmp_name"]);
