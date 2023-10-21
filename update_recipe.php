@@ -59,9 +59,9 @@ include 'banner.php';
 // Display the form to edit the recipe information
 echo "<form method='post' enctype='multipart/form-data'>";
 echo "<label for='title'>Title:</label>";
-echo "<input type='text' name='title' value='" . $title . "'><br>";
+echo "<input type='text' pattern='^[A-Za-z0-9]+' name='title' value='" . $title . "'maxlength='80' value='<?php echo htmlspecialchars($title) ?>'><br>";
 echo "<label for='text'>Text:</label>";
-echo "<textarea name='text'>" . $text . "</textarea><br>";
+echo "<textarea name='text' maxlenght='60000' value='<?php echo htmlspecialchars($text) ?>'>" . $text . "</textarea><br>";
 echo "<label for='picture'>Picture:</label>";
 echo "<input type='file' name='picture'><br>";
 echo "<input type='submit' value='Update Recipe'>";

@@ -84,11 +84,11 @@ echo $error_message;
                     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
                         <div class="mb-3">
                             <label for="old_password" class="form-label">Old Password:</label>
-                            <input type="password" class="form-control" id="old_password" name="old_password" required>
+                            <input pattern='^[A-Za-z0-9]+' type="password" class="form-control" id="old_password" name="old_password" maxlength="30" value="<?php echo htmlspecialchars($old_password) ?>" required>
                         </div>
                         <div class="mb-3">
                             <label for="new_password" class="form-label">New Password:</label>
-                            <input type="password" class="form-control" id="new_password" name="new_password" required>
+                            <input pattern='^[A-Za-z0-9]+' type="password" class="form-control" id="new_password" name="new_password" maxlength="30" value="<?php echo htmlspecialchars($new_password) ?>" required>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Change Password</button>
                     </form>

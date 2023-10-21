@@ -22,19 +22,19 @@
             <form action="db_register.php" method="POST">
             <div class="mb-3">
                 <label for="firstname" class="form-label">First name:</label>
-                <input type="text" class="form-control" id="firstname" name="firstname" required>
+                <input pattern="^[A-Za-z0-9]+" type="text" class="form-control" id="firstname" name="firstname" maxlength="40" value='<?php echo htmlspecialchars($firstname) ?>' required>
               </div>
               <div class="mb-3">
                 <label for="lastname" class="form-label">Last name:</label>
-                <input type="text" class="form-control" id="lastname" name="lastname" required>
+                <input pattern="^[A-Za-z0-9]+" type="text" class="form-control" id="lastname" name="lastname" maxlength="40" value='<?php echo htmlspecialchars($lastname) ?>' required>
               </div>
               <div class="mb-3">
                 <label for="username" class="form-label">Username:</label>
-                <input type="text" class="form-control" id="username" name="username" required>
+                <input pattern="^[A-Za-z0-9]+" type="text" class="form-control" id="username" name="username" maxlength="40" value='<?php echo htmlspecialchars($username) ?>' required>
               </div>
               <div class="mb-3">
                 <label for="password" class="form-label">Password:</label>
-                <input type="password" class="form-control" id="password" name="password" required>
+                <input pattern="^[A-Za-z0-9]+" type="password" class="form-control" id="password" name="password" maxlength="30" value='<?php echo htmlspecialchars($password) ?>' required>
               </div>
               <button type="submit" class="btn btn-primary btn-block">Sign me up</button>
               <a href="login.php">
