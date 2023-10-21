@@ -14,11 +14,17 @@ function test_input($data) {
 
 include "db_connection.php";
 
+$userid = $_SESSION['user_id'];
+$title = "";
+$text = "";
+$picture;
+$recipeUserId = 0;
+
 // Get the recipe ID from the URL parameter
 $id = $_GET['id'];
 
 // Prepare a SQL statement to select the recipe from the table
-$stmt = $mysqli->prepare("SELECT title, text, picture FROM recipes WHERE id = ?");
+$stmt = $mysqli->prepare("SELECT title, text, picture, userid FROM recipes WHERE id = ?");
 
 $stmt->bind_param("i", $id);
 
@@ -26,13 +32,18 @@ $stmt->bind_param("i", $id);
 $stmt->execute();
 
 // Bind the result to variables
-$stmt->bind_result($title, $text, $picture);
+$stmt->bind_result($title, $text, $picture, $recipeUserId);
 
 // Fetch the result
 $stmt->fetch();
 
 // Close the statement
 $stmt->close();
+
+if ($userid != $recipeUserId) {
+    header("Location: mainpage.php");
+    exit();
+}
 
 // Check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

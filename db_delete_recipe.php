@@ -7,8 +7,22 @@ if (!isset($_SESSION['loggedin']) or !$_SESSION['loggedin']) {
 
 include "db_connection.php";
 
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+  }
+
 // Get the recipe ID from the form data
-$id = $_POST['id'];
+$id = test_input($_POST['id']);
+
+$userid = $_SESSION['user_id'];
+
+if ($userid != $recipeUserId) {
+    header("Location: mainpage.php");
+    exit();
+}
 
 // Prepare a SQL statement to delete the recipe from the table
 $stmt = $mysqli->prepare("DELETE FROM recipes WHERE id = ?");
