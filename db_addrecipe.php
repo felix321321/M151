@@ -5,11 +5,18 @@ if (!isset($_SESSION['loggedin']) or !$_SESSION['loggedin']) {
     header("Location: login.php");
 } 
 
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+  }
+
 include "db_connection.php";
 
 $userid = "10";
-$title = $_POST["title"];
-$text = $_POST["text"];
+$title = test_input($_POST["title"]);
+$text = test_input($_POST["text"]);
 $picture = file_get_contents($_FILES["picture"]["tmp_name"]);
 
 // Prepare a SQL statement to insert data into the table

@@ -3,6 +3,13 @@ session_start();
 
 include "db_connection.php";
 
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+  }
+
 $password = "";
 $username = "";
 $firstname = "abc";
@@ -15,9 +22,9 @@ $stmt = $mysqli->prepare("SELECT id, password, firstname FROM userdata WHERE use
 $stmt->bind_param("s", $username);
 
 // Set the parameters
-$username = trim($_POST["username"]);
-$password = trim($_POST["password"]);
-$id = trim($_POST["id"]);
+$username = test_input($_POST["username"]);
+$password = test_input($_POST["password"]);
+$id = test_input($_POST["id"]);
 
 // Execute the SQL statement
 $stmt->execute();

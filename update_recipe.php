@@ -5,6 +5,13 @@ if (!isset($_SESSION['loggedin']) or !$_SESSION['loggedin']) {
     header("Location: login.php");
 } 
 
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+  }
+
 include "db_connection.php";
 
 // Get the recipe ID from the URL parameter
@@ -30,8 +37,8 @@ $stmt->close();
 // Check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Get the updated recipe information from the form data
-    $title = $_POST['title'];
-    $text = $_POST['text'];
+    $title = test_input($_POST['title']);
+    $text = test_input($_POST['text']);
     $picture = file_get_contents($_FILES['picture']['tmp_name']);
     $stmt;
 

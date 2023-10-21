@@ -7,10 +7,17 @@ if (!isset($_SESSION['loggedin']) or !$_SESSION['loggedin']) {
     header("Location: login.php");
 } 
 
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+  }
+
 include "db_connection.php";
 
 // Get the user's ID from the session
-$user_id = $_SESSION['user_id'];
+$user_id = test_input($_SESSION['user_id']);
 $firstname = "";
 $password = "";
 $error_message = "";
@@ -18,8 +25,8 @@ $error_message = "";
 // Check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Get the old and new passwords from the form data
-    $old_password = $_POST['old_password'];
-    $new_password = $_POST['new_password'];
+    $old_password = test_input($_POST['old_password']);
+    $new_password = test_input($_POST['new_password']);
 
     // Prepare a SQL statement to select the user from the table
     $stmt = $mysqli->prepare("SELECT password, firstname FROM userdata WHERE id = ?");

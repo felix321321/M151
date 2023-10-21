@@ -7,6 +7,13 @@ $lastname = "";
 $username = "";
 $password = "";
 
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+  }
+
 // Prepare a SQL statement to insert data into the table
 $stmt = $mysqli->prepare("INSERT INTO userdata (firstname, secondname, username, password) VALUES (?, ?, ?, ?)");
 
@@ -14,10 +21,10 @@ $stmt = $mysqli->prepare("INSERT INTO userdata (firstname, secondname, username,
 $stmt->bind_param("ssss", $firstname, $lastname, $username, $hashed_password);
 
 // Set the parameters
-$firstname = trim($_POST["firstname"]);
-$lastname = trim($_POST["lastname"]);
-$username = trim($_POST["username"]);
-$password = trim($_POST["password"]);
+$firstname = test_input($_POST["firstname"]);
+$lastname = test_input($_POST["lastname"]);
+$username = test_input($_POST["username"]);
+$password = test_input($_POST["password"]);
 
 // Hash the password
 $hashed_password = md5($firstname . $password);
