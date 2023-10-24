@@ -21,7 +21,6 @@ include "db_connection.php";
 $user_id = test_input($_SESSION['user_id']);
 $firstname = "";
 $password = "";
-$error_message = "";
 
 // Check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -73,8 +72,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 include 'banner.php';
-echo $error_message;
 ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Account</title>
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
 
 <div class="container mt-5">
     <div class="row justify-content-center">
